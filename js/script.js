@@ -72,140 +72,48 @@ let stopwatchSec = document.querySelector('.stopwatch__seconds'),
     stopWatchBtn = document.querySelector('.stopwatch__btn'),
     stopWatchSpan = document.querySelector('.tabsLink__span')
 
-let i=0,
-    t=1,
-    x=1
-
-function loop() {
-    if(i<60) {
-        stopwatchSec.innerHTML = i;
-        i++
-        setTimeout(() => loop(), 1000)   
-    } else if (i==60) {
-        i=0
-        stopwatchSec.innerHTML = (i);
-        i++
-        stopwatchMin.innerHTML = t;
-        t++
-        setTimeout(() => loop(), 1000)
-            if (t==61) {
-            t=0
-            stopwatchMin.innerHTML = t;
-            t++
-            stopwatchHour.innerHTML = x;
-            x++
-        }
-    }    
-}
+    let i=0,
+        t=1,
+        x=1
 
     stopWatchBtn.addEventListener ('click', () => {
+        if(stopWatchBtn.innerHTML == "START") {
         stopWatchSpan.classList.add('active');
         stopWatchBtn.innerHTML = "STOP";
-        loop()
-    
-            stopWatchBtn.addEventListener ('click', () => {
+        loop(stopWatchBtn, i, t, x)
+        } else if (stopWatchBtn.innerHTML == "STOP") {
             stopWatchSpan.classList.remove('active');
             stopWatchSpan.classList.add('active_clear');
-            stopWatchBtn.innerHTML = "CLEAR"; 
-            
-            stopWatchBtn.addEventListener ('click', () => {
+            stopWatchBtn.innerHTML = "CLEAR";  
+        } else {
             stopWatchSpan.classList.remove('active_clear');
             stopWatchBtn.innerHTML = "START";  
-            stopwatchSec.innerHTML = "0";
-            stopwatchMin.innerHTML = "0";
-            stopwatchHour.innerHTML = "0";            
-            })
-            })
+            stopwatchSec.innerHTML = 0;
+            stopwatchMin.innerHTML = 0;
+            stopwatchHour.innerHTML = 0;  
+        }
     })
 
-
-
-
-// switch(stopWatchBtn.innerHTML) {
-//     case 'START':
-//     stopWatchBtn.addEventListener ('click', () => {
-//         stopWatchSpan.classList.add('active');
-//         stopWatchBtn.innerHTML = "STOP";
-//         loop();
-//     })
-//     case 'STOP':
-//     stopWatchBtn.addEventListener ('click', () => {
-//         stopWatchSpan.classList.add('active');
-//         stopWatchBtn.innerHTML = "CLEAR";
-//         //'break';
-//     })
-//     case 'CLEAR':
-//     stopWatchBtn.addEventListener ('click', () => {
-//         stopWatchSpan.classList.remove('active_clear');
-//         stopWatchBtn.innerHTML = "START";
-//         stopwatchSec.innerHTML = "0";
-//         stopwatchMin.innerHTML = "0";
-//         stopwatchHour.innerHTML = "0"; 
-//     })
-//     //'break';
-// }
-
-
-
-
-
-
-
-    // if (stopWatchBtn.innerHTML === "STOP") {
-    //     stopWatchBtn.addEventListener ('click', () => {
-    //     stopWatchSpan.classList.remove('active');
-    //     stopWatchSpan.classList.add('active_clear');
-    //     stopWatchBtn.innerHTML = "CLEAR";  
-    //     return loop()
-    //     })
-    // }
-
-// stopWatchBtn.addEventListener ('click', () => {
-//     if(stopWatchBtn.innerHTML == "START") {
-//     stopWatchSpan.classList.add('active');
-//     work = "STOP";
-//     loop()
-//     } 
-    // else if (stopWatchBtn.innerHTML == "STOP") {
-    //     stopWatchBtn.addEventListener ('click', () => {
-    //     stopWatchSpan.classList.remove('active');
-    //     stopWatchSpan.classList.add('active_clear');
-    //     stopWatchBtn.innerHTML = "CLEAR";  
-    //     return loop()
-    // })
-    // }
-// })
-
-        // stopWatchSpan.classList.remove('active');
-        // stopWatchSpan.classList.add('active_clear');
-        // stopWatchBtn.innerHTML = "CLEAR";  
-
-
-
-
-    // stopWatchBtn.addEventListener('click', () => {
-    //         stopWatchSpan.classList.add('active');
-    //         stopWatchBtn.innerHTML = "STOP";
-    //         loop()
-
-    //     })
-
-    //     stopWatchSpan.classList.remove('active');
-    //     stopWatchSpan.classList.add('active_clear');
-    //     stopWatchBtn.innerHTML = "CLEAR";  
-           
-//     } else 
-// if(stopWatchBtn.innerHTML = "STOP") {
-//         stopWatchSpan.classList.remove('active');
-//         stopWatchSpan.classList.add('active_clear');
-//         stopWatchBtn.innerHTML = "CLEAR";    
-//     } else if(stopWatchBtn.innerHTML = "CLEAR") {
-//         stopWatchSpan.classList.remove('active_clear');
-//         stopWatchBtn.innerHTML = "START";  
-//     }
-//     })    
-
-
-
-
+function loop(button, i, t, x) {
+    if (button.innerHTML == 'STOP') {
+        if(i<60) {
+            stopwatchSec.innerHTML = i;
+            i++ 
+            } else if (i==60) {
+                i=0
+                stopwatchSec.innerHTML = (i);
+                i++
+                stopwatchMin.innerHTML = t;
+                t++
+                    if (t==61) {
+                    t=0
+                    stopwatchMin.innerHTML = t;
+                    t++
+                    stopwatchHour.innerHTML = x;
+                    x++
+                    }
+                }  
+        setTimeout(() => loop(button, i, t, x), 1000)  
+    }
+}
 
