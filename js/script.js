@@ -66,6 +66,8 @@ function removeActive () {
     })
 }
 
+// СЕКУНДОМЕР
+
 let stopwatchSec = document.querySelector('.stopwatch__seconds'),
     stopwatchMin = document.querySelector('.stopwatch__minutes'),
     stopwatchHour = document.querySelector('.stopwatch__hours'),
@@ -77,17 +79,17 @@ let stopwatchSec = document.querySelector('.stopwatch__seconds'),
         x=1
 
     stopWatchBtn.addEventListener ('click', () => {
-        if(stopWatchBtn.innerHTML == "START") {
+        if(stopWatchBtn.innerHTML == "start") {
         stopWatchSpan.classList.add('active');
-        stopWatchBtn.innerHTML = "STOP";
+        stopWatchBtn.innerHTML = "stop";
         loop(stopWatchBtn, i, t, x)
-        } else if (stopWatchBtn.innerHTML == "STOP") {
+        } else if (stopWatchBtn.innerHTML == "stop") {
             stopWatchSpan.classList.remove('active');
             stopWatchSpan.classList.add('active_clear');
-            stopWatchBtn.innerHTML = "CLEAR";  
+            stopWatchBtn.innerHTML = "clear";  
         } else {
             stopWatchSpan.classList.remove('active_clear');
-            stopWatchBtn.innerHTML = "START";  
+            stopWatchBtn.innerHTML = "start";  
             stopwatchSec.innerHTML = 0;
             stopwatchMin.innerHTML = 0;
             stopwatchHour.innerHTML = 0;  
@@ -95,7 +97,7 @@ let stopwatchSec = document.querySelector('.stopwatch__seconds'),
     })
 
 function loop(button, i, t, x) {
-    if (button.innerHTML == 'STOP') {
+    if (button.innerHTML == 'stop') {
         if(i<60) {
             stopwatchSec.innerHTML = i;
             i++ 
